@@ -31,10 +31,8 @@ jobs:
     - name: Run Flask server
       run: nohup python app.py &
 
-    - name: Run tests or deployment
-      run: |
-        # Add your deployment or testing commands here
-        echo "Running deployment or tests"
+    - name: Wait for server to start
+      run: sleep 5
 
     - name: Stop Flask server
-      run: pkill -f app.py
+      run: pkill -f app.py || true
