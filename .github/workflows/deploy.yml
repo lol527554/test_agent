@@ -28,7 +28,13 @@ jobs:
     - name: Set environment variables
       run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
 
-    - name: Run Flask app
+    - name: Run Flask server
+      run: nohup python app.py &
+
+    - name: Run tests or deployment
       run: |
-        source venv/bin/activate
-        python app.py
+        # Add your deployment or testing commands here
+        echo "Running deployment or tests"
+
+    - name: Stop Flask server
+      run: pkill -f app.py
